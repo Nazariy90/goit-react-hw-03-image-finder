@@ -7,17 +7,19 @@ class Searchbar extends Component {
     input: '',
   };
 
-  render() {
+  handleSubmit(e) {
+    e.preventDefault();
     const { onSearch } = this.props;
+    onSearch(this.state.input);
+  }
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      onSearch(this.state.input);
-    };
-
+  render() {
     return (
       <header className={css.Searchbar}>
-        <form className={css.SearchForm} onSubmit={handleSubmit}>
+        <form
+          className={css.SearchForm}
+          onSubmit={this.handleSubmit.bind(this)}
+        >
           <button type="submit" className={css.SearchFormButton}>
             <span className={css.SearchFormButtonLabel}>Search</span>
           </button>
